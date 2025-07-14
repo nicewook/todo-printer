@@ -102,29 +102,6 @@ def list_printers() -> str:
     except Exception as e:
         return f"❌ 프린터 목록 조회 실패: {str(e)}"
 
-@mcp.tool()
-def get_printer_status(
-    printer_name: str = "BIXOLON_SRP_330II"
-) -> str:
-    """
-    특정 프린터의 상태를 확인합니다.
-    """
-    try:
-        status = printer.printer_status(printer_name)
-        
-        # 상태 메시지에서 'idle'나 'processing' 같은 키워드로 가용성 판단
-        is_available = "idle" in status.lower() or "accepting" in status.lower()
-        status_icon = "✅" if is_available else "❌"
-        
-        from datetime import datetime
-        response_text = f"📊 프린터 상태: {printer_name}\n"
-        response_text += f"{status_icon} {status}\n"
-        response_text += f"🕒 확인 시각: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
-        
-        return response_text
-        
-    except Exception as e:
-        return f"❌ 프린터 상태 확인 실패: {str(e)}"
 
 if __name__ == "__main__":
     mcp.run()
