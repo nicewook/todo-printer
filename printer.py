@@ -4,7 +4,6 @@
 사용법: python3 print_text.py "출력할 텍스트"
 """
 
-import sys
 import subprocess
 import tempfile
 import argparse
@@ -73,25 +72,13 @@ def wrap_text(text, max_width=40):
     return lines
 
 
-def prepare_print_content(text, min_lines=6):
+def prepare_print_content(text):
     """출력할 내용 준비"""
     # 텍스트를 줄바꿈
     lines = wrap_text(text, max_width=40)
     
     lines.insert(0, "")  # 위에 1줄 여백
-    
-    # 아래 여백 계산
-    text_line_count = len(lines) - 1  # 위 여백 제외한 실제 텍스트 줄 수
-    if text_line_count == 1:
-        bottom_padding = 3
-    elif text_line_count == 2:
-        bottom_padding = 2
-    else:
-        bottom_padding = 1
-    
-    # 아래 여백 추가
-    for _ in range(bottom_padding):
-        lines.append("")
+    lines.append("")     # 아래 1줄 여백
     
     return lines
 
