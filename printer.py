@@ -22,6 +22,24 @@ def get_text_width(text):
             width += 1
     return width
 
+def truncate_to_single_line(text, max_width=40):
+    """텍스트를 한 줄로 제한하고 초과 시 자름"""
+    if get_text_width(text) <= max_width:
+        return text, False
+    
+    # 문자별로 잘라내기
+    truncated = ""
+    current_width = 0
+    
+    for char in text:
+        char_width = 2 if ord(char) > 127 else 1
+        if current_width + char_width > max_width:
+            break
+        truncated += char
+        current_width += char_width
+    
+    return truncated, True
+
 def wrap_text(text, max_width=40):
     """텍스트를 지정된 폭으로 줄바꿈"""
     lines = []
