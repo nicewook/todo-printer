@@ -78,7 +78,10 @@ def prepare_print_content(text):
     lines = wrap_text(text, max_width=40)
     
     lines.insert(0, "")  # 위에 1줄 여백
-    lines.append("")     # 아래 1줄 여백
+    # 아래 3줄 여백
+    lines.append("")
+    lines.append("")
+    lines.append("")
     
     return lines
 
