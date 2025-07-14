@@ -54,7 +54,7 @@ def print_memo(
             return f"✅ 출력 완료: {get_text_width(truncated_text)}자폭"
         else:
             return f"❌ 출력 실패: {printer_name}"
-    except Exception as e:
+    except (ImportError, AttributeError, RuntimeError) as e:
         return f"❌ 출력 오류: {str(e)}"
 
 @mcp.tool()
@@ -74,14 +74,14 @@ def list_printers() -> str:
                 status = printer.printer_status(printer_name)
                 printer_list.append(f"  ✅ {printer_name}")
                 printer_list.append(f"     상태: {status}")
-            except Exception as e:
+            except (ImportError, AttributeError, RuntimeError) as e:
                 printer_list.append(f"  ❌ {printer_name} (상태 확인 실패: {str(e)})")
         
         printer_list.append(f"\n총 {len(printers)}개 프린터")
         
         return "\n".join(printer_list)
         
-    except Exception as e:
+    except (ImportError, AttributeError, RuntimeError) as e:
         return f"❌ 프린터 목록 조회 실패: {str(e)}"
 
 

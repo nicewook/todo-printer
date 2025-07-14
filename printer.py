@@ -139,7 +139,7 @@ def printer_list():
                     printers.append(printer_name)
             return printers
         return []
-    except Exception:
+    except (subprocess.SubprocessError, OSError) as e:
         return []
 
 def printer_print(text, printer_name="BIXOLON_SRP_330II", isFromMCP=False):
@@ -175,7 +175,7 @@ def printer_print(text, printer_name="BIXOLON_SRP_330II", isFromMCP=False):
                 print(f"❌ 출력 실패: {result.stderr}")
             return False
             
-    except Exception as e:
+    except (subprocess.SubprocessError, OSError, IOError) as e:
         if not isFromMCP:
             print(f"❌ 출력 오류: {e}")
         return False
@@ -188,7 +188,7 @@ def printer_status(printer_name):
             return result.stdout.strip()
         else:
             return f"프린터 '{printer_name}'을 찾을 수 없습니다."
-    except Exception as e:
+    except (subprocess.SubprocessError, OSError) as e:
         return f"상태 확인 실패: {e}"
 
 def main():
