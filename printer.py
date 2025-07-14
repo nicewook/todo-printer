@@ -7,6 +7,7 @@
 import subprocess
 import tempfile
 import argparse
+import os
 
 def get_text_width(text):
     """텍스트의 실제 폭 계산 (한글=2, 영문=1)
@@ -151,18 +152,21 @@ def printer_print(text, printer_name="BIXOLON_SRP_330II", isFromMCP=False):
         # ESC/POS 명령어 포함한 내용 생성
         print_content = create_esc_pos_content(lines)
         
-        # 임시 파일 생성
+        # 임시 파일 생성 및 처리
         with tempfile.NamedTemporaryFile(delete=False, suffix='.bin') as temp_file:
             temp_file.write(print_content)
             temp_file_path = temp_file.name
         
-        # lp 명령어로 출력
-        cmd = ['lp', '-d', printer_name, '-o', 'raw', temp_file_path]
-        result = subprocess.run(cmd, capture_output=True, text=True)
-        
-        # 임시 파일 삭제
-        import os
-        os.unlink(temp_file_path)
+        try:
+            # lp 명령어로 출력
+            cmd = ['lp', '-d', printer_name, '-o', 'raw', temp_file_path]
+            result = subprocess.run(cmd, capture_output=True, text=True)
+        finally:
+            # 임시 파일 삭제 (예외 발생 시에도 보장)
+            try:
+                os.unlink(temp_file_path)
+            except OSError:
+                pass  # 파일이 이미 삭제되었거나 접근할 수 없는 경우 무시
         
         if result.returncode == 0:
             if not isFromMCP:
