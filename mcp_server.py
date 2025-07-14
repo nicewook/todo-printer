@@ -6,58 +6,72 @@ FastMCP를 사용한 단순한 동기 구현
 
 from mcp.server.fastmcp import FastMCP
 import printer
+from printer import get_text_width
 
 # FastMCP 서버 설정
 mcp = FastMCP("todo-printer")
 
+def truncate_to_single_line(text, max_width=40):
+    """텍스트를 한 줄로 제한하고 초과 시 자름"""
+    if get_text_width(text) <= max_width:
+        return text, False
+    
+    # 문자별로 잘라내기
+    truncated = ""
+    current_width = 0
+    
+    for char in text:
+        char_width = 2 if ord(char) > 127 else 1
+        if current_width + char_width > max_width:
+            break
+        truncated += char
+        current_width += char_width
+    
+    return truncated, True
+
 @mcp.tool()
 def print_memo(
-    raw_text: str,
-    printer_name: str = "BIXOLON_SRP_330II",
-    preview: bool = False
+    todo_memo: str,
+    printer_name: str = "BIXOLON_SRP_330II"
 ) -> str:
     """
-    Print raw text exactly as provided for messages starting with '>' or requesting '출력'.
+    Print todo_memo exactly as provided for messages starting with '>' or requesting '출력'.
     
-    CRITICAL: This tool must output the raw_text parameter EXACTLY as received.
-    Do NOT add, remove, translate, format, or enhance the content in any way.
-    The AI must pass the user's original text verbatim to this function.
+    CRITICAL: SEND the user's original text verbatim to this function.
+    Do not modify, enhance, translate, or add content to todo_memo. 
     
-    Use this tool when:
+    
+    SINGLE LINE LIMIT: SEND ONLY ONE LINE OF TEXT.
+    Text is automatically truncated to fit one line (40 character width).
+    Korean/special characters count as 2 width, English/numbers as 1 width.
+  
+    
+    You must use this tool when:
     - User message starts with '>'
     - User explicitly requests '출력' (printing/output)
     
     Args:
-        raw_text: The exact text to print (must be passed unmodified from user input)
-        printer_name: Target printer device name  
-        preview: If True, show preview instead of printing
+        todo_memo: The exact text to print (automatically truncated to single line if needed)
+        printer_name: Target printer device name
     
     Returns:
         Print status message
-        
-    IMPORTANT: Never modify, enhance, translate, or add content to raw_text.
     """
-    raw_text = raw_text.strip()
+    todo_memo = todo_memo.strip()
     
     # 텍스트 길이 검증
-    if not raw_text:
+    if not todo_memo:
         return "❌ 출력할 텍스트가 비어있습니다."
     
-    if len(raw_text) > 500:
-        return f"❌ 텍스트가 너무 깁니다. ({len(raw_text)}/500자) 500자 이내로 입력하세요."
+    # 한 줄로 제한 (40자 폭)
+    truncated_text, _ = truncate_to_single_line(todo_memo)
     
     try:
-        if preview:
-            # 미리보기 생성
-            preview_text = printer.printer_preview(raw_text)
-            return f"📄 출력 미리보기 ({len(raw_text)}자):\n{preview_text}"
+        success = printer.printer_print(truncated_text, printer_name, True)
+        if success:
+            return f"✅ 출력 완료: {get_text_width(truncated_text)}자폭"
         else:
-            # 실제 출력
-            success = printer.printer_print(raw_text, printer_name, True)
-            if success:
-                return f"✅ 출력 완료: {len(raw_text)}자"
-            else:
-                return f"❌ 출력 실패: {printer_name}"
+            return f"❌ 출력 실패: {printer_name}"
     except Exception as e:
         return f"❌ 출력 오류: {str(e)}"
 

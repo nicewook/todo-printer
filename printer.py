@@ -10,7 +10,10 @@ import tempfile
 import argparse
 
 def get_text_width(text):
-    """텍스트의 실제 폭 계산 (한글=2, 영문=1)"""
+    """텍스트의 실제 폭 계산 (한글=2, 영문=1)
+    
+    Note: 한/영 위주 사용을 위한 간단한 로직 (ord > 127)
+    """
     width = 0
     for char in text:
         if ord(char) > 127:  # 한글/특수문자
