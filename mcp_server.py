@@ -12,33 +12,50 @@ mcp = FastMCP("todo-printer")
 
 @mcp.tool()
 def print_memo(
-    text: str,
+    raw_text: str,
     printer_name: str = "BIXOLON_SRP_330II",
     preview: bool = False
 ) -> str:
     """
-    텍스트를 프린터로 출력하거나 미리보기를 생성합니다.
-    '>' 로 시작하거나 '출력'을 요청한 텍스트에 대해 사용합니다.
+    Print raw text exactly as provided for messages starting with '>' or requesting '출력'.
+    
+    CRITICAL: This tool must output the raw_text parameter EXACTLY as received.
+    Do NOT add, remove, translate, format, or enhance the content in any way.
+    The AI must pass the user's original text verbatim to this function.
+    
+    Use this tool when:
+    - User message starts with '>'
+    - User explicitly requests '출력' (printing/output)
+    
+    Args:
+        raw_text: The exact text to print (must be passed unmodified from user input)
+        printer_name: Target printer device name  
+        preview: If True, show preview instead of printing
+    
+    Returns:
+        Print status message
+        
+    IMPORTANT: Never modify, enhance, translate, or add content to raw_text.
     """
-    text = text.strip()
+    raw_text = raw_text.strip()
     
     # 텍스트 길이 검증
-    if not text:
+    if not raw_text:
         return "❌ 출력할 텍스트가 비어있습니다."
     
-    if len(text) > 500:
-        return f"❌ 텍스트가 너무 깁니다. ({len(text)}/500자) 500자 이내로 입력하세요."
+    if len(raw_text) > 500:
+        return f"❌ 텍스트가 너무 깁니다. ({len(raw_text)}/500자) 500자 이내로 입력하세요."
     
     try:
         if preview:
             # 미리보기 생성
-            preview_text = printer.printer_preview(text)
-            return f"📄 출력 미리보기 ({len(text)}자):\n{preview_text}"
+            preview_text = printer.printer_preview(raw_text)
+            return f"📄 출력 미리보기 ({len(raw_text)}자):\n{preview_text}"
         else:
             # 실제 출력
-            success = printer.printer_print(text, printer_name, True)
+            success = printer.printer_print(raw_text, printer_name, True)
             if success:
-                return f"✅ 출력 완료: {len(text)}자"
+                return f"✅ 출력 완료: {len(raw_text)}자"
             else:
                 return f"❌ 출력 실패: {printer_name}"
     except Exception as e:
