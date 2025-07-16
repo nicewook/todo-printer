@@ -1,3 +1,9 @@
+---
+title: Todo Printer
+category: overview
+created: 2025-01-16T09:00:00Z
+---
+
 # Todo Printer
 
 Claude Desktop 에서 MCP server를 통해 프린터로 출력하는 프로젝트
