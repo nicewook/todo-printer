@@ -335,22 +335,22 @@
         </div>
       
         <div class="sidebar-category">
-          <div class="sidebar-category-title" onclick="toggleCategory('technical', this)">technical</div>
-          <div class="sidebar-files" id="category-technical">
+          <div class="sidebar-category-title" onclick="toggleCategory('Documentation', this)">Documentation</div>
+          <div class="sidebar-files" id="category-Documentation">
             
-              <div class="sidebar-file" onclick="showFile('technical-0', this)">
-                printer.py 파일 분석
+              <div class="sidebar-file" onclick="showFile('Documentation-0', this)">
+                CLAUDE
               </div>
             
           </div>
         </div>
       
         <div class="sidebar-category">
-          <div class="sidebar-category-title" onclick="toggleCategory('Documentation', this)">Documentation</div>
-          <div class="sidebar-files" id="category-Documentation">
+          <div class="sidebar-category-title" onclick="toggleCategory('technical', this)">technical</div>
+          <div class="sidebar-files" id="category-technical">
             
-              <div class="sidebar-file" onclick="showFile('Documentation-0', this)">
-                CLAUDE
+              <div class="sidebar-file" onclick="showFile('technical-0', this)">
+                printer.py 파일 분석
               </div>
             
           </div>
@@ -474,6 +474,71 @@ brew install uv
             </div>
           </div>
         
+          <div class="file-content-wrapper " id="content-Documentation-0">
+            <div class="file-header">
+              <h1 class="file-title">CLAUDE</h1>
+              <div class="file-meta">
+                <span class="file-category">Documentation</span>
+                <span class="file-date">7/16/2025</span>
+                <span class="file-path">docs/CLAUDE.md</span>
+              </div>
+            </div>
+            <div class="file-content">
+              <h1>CLAUDE.md - Documentation Directory</h1>
+<p>This file provides specific guidance for Claude Code when working with markdown files in the <code>/docs</code> directory.</p>
+<h2>Markdown Documentation Standards</h2>
+<p>When creating or editing markdown files in this directory, follow these standards:</p>
+<h3>Required Header Format</h3>
+<p>Every markdown file MUST start with the following header format:</p>
+<pre><code class="language-markdown">---
+title: Document Title
+category: [overview|technical|analysis|planning|misc]
+created: 22024-07-01T15:30:45Z
+---
+# Document Title
+
+[Document content follows...]
+</code></pre>
+<h3>Documentation Rules</h3>
+<ol>
+<li><p><strong>Date Format</strong>: Use RFC3339 format (YYYY-MM-DDTHH:MM:SSZ)</p>
+</li>
+<li><p><strong>Category Selection</strong>: Choose exactly one from:</p>
+<ul>
+<li><code>overview</code> - High-level project overviews and introductions</li>
+<li><code>technical</code> - Technical specifications, API docs, code analysis</li>
+<li><code>analysis</code> - Research findings, data analysis, performance studies</li>
+<li><code>planning</code> - Project plans, roadmaps, task breakdowns</li>
+<li><code>misc</code> - Everything else that doesn&#39;t fit other categories</li>
+</ul>
+</li>
+<li><p><strong>Header Placement</strong>: <code>title</code>, <code>category</code> and <code>created</code> info must appear immediately after the main title</p>
+</li>
+<li><p><strong>Formatting</strong>: Use bold text for labels, maintain consistent spacing</p>
+</li>
+</ol>
+<h3>Important Notes</h3>
+<ul>
+<li>ALWAYS apply these rules when creating new markdown files in <code>/docs</code></li>
+<li>When editing existing markdown files, add the header if missing</li>
+<li>Use current timestamp when creating the <code>created</code> field</li>
+</ul>
+<h3>Document Portal Integration</h3>
+<p>Files created with proper headers will be automatically categorized and displayed in the documentation portal (<code>index.html</code>). The categorization system helps organize documents into logical groups for better navigation.</p>
+<h3>Quality Standards</h3>
+<ul>
+<li>Use clear, descriptive titles</li>
+<li>Include comprehensive sections with proper heading hierarchy</li>
+<li>Add code examples where applicable</li>
+<li>Include diagrams (Mermaid) for complex relationships</li>
+<li>Maintain consistent formatting throughout</li>
+<li>Use Korean comments for Korean-language content</li>
+<li>Use English for technical terms and international standards</li>
+</ul>
+
+            </div>
+          </div>
+        
           <div class="file-content-wrapper " id="content-technical-0">
             <div class="file-header">
               <h1 class="file-title">printer.py 파일 분석</h1>
@@ -569,71 +634,6 @@ content.append(b&#39;\x1D\x56\x00&#39;)    # 용지 절단
 <li>40자 폭 고정 (영수증 프린터 특성상)</li>
 <li>BIXOLON SRP-330II 프린터에 최적화</li>
 <li>macOS/Linux 환경 (CUPS 의존성)</li>
-</ul>
-
-            </div>
-          </div>
-        
-          <div class="file-content-wrapper " id="content-Documentation-0">
-            <div class="file-header">
-              <h1 class="file-title">CLAUDE</h1>
-              <div class="file-meta">
-                <span class="file-category">Documentation</span>
-                <span class="file-date">7/16/2025</span>
-                <span class="file-path">docs/CLAUDE.md</span>
-              </div>
-            </div>
-            <div class="file-content">
-              <h1>CLAUDE.md - Documentation Directory</h1>
-<p>This file provides specific guidance for Claude Code when working with markdown files in the <code>/docs</code> directory.</p>
-<h2>Markdown Documentation Standards</h2>
-<p>When creating or editing markdown files in this directory, follow these standards:</p>
-<h3>Required Header Format</h3>
-<p>Every markdown file MUST start with the following header format:</p>
-<pre><code class="language-markdown">---
-title: Document Title
-category: [overview|technical|analysis|planning|misc]
-created: 22024-07-01T15:30:45Z
----
-# Document Title
-
-[Document content follows...]
-</code></pre>
-<h3>Documentation Rules</h3>
-<ol>
-<li><p><strong>Date Format</strong>: Use RFC3339 format (YYYY-MM-DDTHH:MM:SSZ)</p>
-</li>
-<li><p><strong>Category Selection</strong>: Choose exactly one from:</p>
-<ul>
-<li><code>overview</code> - High-level project overviews and introductions</li>
-<li><code>technical</code> - Technical specifications, API docs, code analysis</li>
-<li><code>analysis</code> - Research findings, data analysis, performance studies</li>
-<li><code>planning</code> - Project plans, roadmaps, task breakdowns</li>
-<li><code>misc</code> - Everything else that doesn&#39;t fit other categories</li>
-</ul>
-</li>
-<li><p><strong>Header Placement</strong>: <code>title</code>, <code>category</code> and <code>created</code> info must appear immediately after the main title</p>
-</li>
-<li><p><strong>Formatting</strong>: Use bold text for labels, maintain consistent spacing</p>
-</li>
-</ol>
-<h3>Important Notes</h3>
-<ul>
-<li>ALWAYS apply these rules when creating new markdown files in <code>/docs</code></li>
-<li>When editing existing markdown files, add the header if missing</li>
-<li>Use current timestamp when creating the <code>created</code> field</li>
-</ul>
-<h3>Document Portal Integration</h3>
-<p>Files created with proper headers will be automatically categorized and displayed in the documentation portal (<code>index.html</code>). The categorization system helps organize documents into logical groups for better navigation.</p>
-<h3>Quality Standards</h3>
-<ul>
-<li>Use clear, descriptive titles</li>
-<li>Include comprehensive sections with proper heading hierarchy</li>
-<li>Add code examples where applicable</li>
-<li>Include diagrams (Mermaid) for complex relationships</li>
-<li>Maintain consistent formatting throughout</li>
-<li>Use Korean comments for Korean-language content</li>
-<li>Use English for technical terms and international standards</li>
 </ul>
 
             </div>
