@@ -1,0 +1,30 @@
+{
+  "name": "todo-printer",
+  "version": "1.0.0",
+  "description": "Claude Desktop 에서 MCP server를 통해 프린터로 출력하는 프로젝트",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "node docs-generator.js",
+    "docs:watch": "node docs-generator.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicewook/todo-printer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicewook/todo-printer/issues"
+  },
+  "homepage": "https://github.com/nicewook/todo-printer#readme",
+  "devDependencies": {
+    "chokidar": "^4.0.3",
+    "gray-matter": "^4.0.3",
+    "marked": "^16.0.0"
+  }
+}

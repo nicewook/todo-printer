@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 문서</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+        
+        .category {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .category-title {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .file-item {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .file-item:last-child {
+            border-bottom: none;
+        }
+        
+        .file-title {
+            color: #2c3e50;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        
+        .file-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+        
+        .file-date {
+            background: #e8f4f8;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .file-path {
+            font-family: monospace;
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .file-content {
+            line-height: 1.7;
+        }
+        
+        .file-content h1, .file-content h2, .file-content h3 {
+            color: #2c3e50;
+            margin: 20px 0 10px 0;
+        }
+        
+        .file-content p {
+            margin-bottom: 15px;
+        }
+        
+        .file-content pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            border-left: 4px solid #3498db;
+        }
+        
+        .file-content code {
+            background: #f8f9fa;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+        
+        .file-content blockquote {
+            border-left: 4px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #7f8c8d;
+        }
+        
+        .file-content ul, .file-content ol {
+            margin: 10px 0 10px 30px;
+        }
+        
+        .file-content li {
+            margin-bottom: 5px;
+        }
+        
+        .last-updated {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 프로젝트 문서</h1>
+            <div class="subtitle">개발 중 생성된 문서들을 한눈에 확인하세요</div>
+        </div>
+        
+        
+        <div class="category">
+          <h2 class="category-title">Root</h2>
+          <div class="files">
+            
+              <div class="file-item">
+                <h3 class="file-title">README</h3>
+                <div class="file-meta">
+                  <span class="file-date">7/16/2025</span>
+                  <span class="file-path">README.md</span>
+                </div>
+                <div class="file-content">
+                  <h1>Todo Printer</h1>
+<p>Claude Desktop 에서 MCP server를 통해 프린터로 출력하는 프로젝트</p>
+<h2>개요</h2>
+<p>이 프로젝트는 AI 어시스턴트(Claude Desktop 등)가 텍스트 메모를 프린터로 출력할 수 있도록 하는 MCP(Model Context Protocol) 서버를 제공한다.
+BIXOLON 열프린터에 최적화되어 있지만 CUPS 호환 프린터에서도 동작하도록 구현하는데 참고가 될 수 있다.</p>
+<h2>주요 기능</h2>
+<ul>
+<li><strong>MCP 서버 통합</strong>: Model Context Protocol을 통해 프린터 기능 제공</li>
+<li><strong>프린터 지원</strong>: BIXOLON SRP-330II 및 유사한 ESC/POS 프린터에 최적화</li>
+<li><strong>CUPS 통합</strong>: 안정적인 출력을 위한 Common Unix Printing System 사용</li>
+<li><strong>텍스트 포맷팅</strong>: 열프린터 제약사항에 맞는 자동 텍스트 래핑 및 잘라내기</li>
+</ul>
+<h2>시스템 요구사항</h2>
+<ul>
+<li>Python 3.13+</li>
+<li>CUPS (Common Unix Printing System)</li>
+<li>CUPS 호환 열프린터 (BIXOLON SRP-330II에서 테스트됨)</li>
+</ul>
+<h2>설치 방법</h2>
+<h3>1. 프로젝트 클론</h3>
+<pre><code class="language-bash">git clone https://github.com/nicewook/todo-printer
+cd todo-printer
+</code></pre>
+<h3>2. uv를 사용한 의존성 설치</h3>
+<pre><code class="language-bash">uv sync
+</code></pre>
+<h3>3. CUPS 설치 및 실행</h3>
+<p>이미 설치되어 있다면 4단계로 바로 가면 된다. </p>
+<pre><code class="language-bash"># macOS
+brew install cups
+brew services start cups
+
+# Ubuntu/Debian
+sudo apt-get install cups
+sudo systemctl start cups
+</code></pre>
+<h3>4. 프린터 확인</h3>
+<pre><code class="language-bash"># 사용 가능한 프린터 목록 확인
+lpstat -p
+</code></pre>
+<h2>Claude Desktop 설정</h2>
+<h3>방법 1: MCP CLI를 사용한 자동 설정 (권장)</h3>
+<h4>1. MCP CLI 설치</h4>
+<pre><code class="language-bash"># uv 설치 (이미 설치되어 있다면 건너뛰기)
+brew install uv
+
+# MCP CLI 설치
+uv add &quot;mcp[cli]&quot;
+</code></pre>
+<h4>2. 자동 설정</h4>
+<pre><code class="language-bash"># 프로젝트 디렉토리에서 실행
+uv run mcp install mcp_server.py
+</code></pre>
+<p>이 명령은 자동으로 Claude Desktop 설정 파일에 MCP 서버를 추가해준다.</p>
+<h3>방법 2: 수동 설정</h3>
+<h4>1. uv 설치 확인</h4>
+<pre><code class="language-bash"># uv가 설치되어 있는지 확인
+uv --version
+
+# macOS에서 uv 설치
+brew install uv
+</code></pre>
+<h4>2. Claude Desktop 설정 파일 위치</h4>
+<ul>
+<li>macOS: <code>~/Library/Application Support/Claude/claude_desktop_config.json</code></li>
+<li>Windows: <code>%userprofile%\AppData\Roaming\Claude\claude_desktop_config.json</code></li>
+</ul>
+<h4>3. 설정 파일 구성</h4>
+<p>Claude Desktop 설정 파일에 다음과 같이 추가한다. 방법 1을 사용하면 이 부분이 자동으로 추가되는 것이다.:</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;todo-printer&quot;: {
+      &quot;command&quot;: &quot;/path/to/uv&quot;,
+      &quot;args&quot;: [
+        &quot;run&quot;,
+        &quot;--with&quot;,
+        &quot;mcp[cli]&quot;,
+        &quot;mcp&quot;,
+        &quot;run&quot;,
+        &quot;/path/to/project/todo-printer/mcp_server.py&quot;
+      ]
+    }
+  }
+}
+</code></pre>
+<h3>설정 결과</h3>
+<p>올바르게 설정되면 Claude Desktop를 재시작하면:</p>
+<ul>
+<li>새로운 MCP 서버 연결 아이콘이 표시되며, <code>print_memo</code>, <code>list_printers</code> 도구가 사용 가능.</li>
+<li>사용자가 <code>&gt;</code>로 시작하는 메시지나 &quot;출력&quot; 요청 시 자동으로 프린터 출력된다.</li>
+</ul>
+<h2>프로젝트 구조</h2>
+<pre><code>todo-printer/
+├── mcp_server.py          # MCP 서버 구현
+├── printer.py             # 핵심 출력 로직
+├── pyproject.toml         # 프로젝트 설정
+├── uv.lock               # 의존성 잠금 파일
+├── docs/                 # 문서
+└── README.md             # 이 파일
+</code></pre>
+
+                </div>
+              </div>
+            
+          </div>
+        </div>
+      
+        <div class="category">
+          <h2 class="category-title">technical</h2>
+          <div class="files">
+            
+              <div class="file-item">
+                <h3 class="file-title">printer.py 파일 분석</h3>
+                <div class="file-meta">
+                  <span class="file-date">7/16/2025</span>
+                  <span class="file-path">docs/printer-analysis.md</span>
+                </div>
+                <div class="file-content">
+                  <h1>printer.py 파일 분석</h1>
+<h2>개요</h2>
+<p><code>printer.py</code>는 BIXOLON SRP-330II 영수증 프린터를 위한 한글 텍스트 출력 스크립트입니다. CUPS(Common Unix Printing System)를 사용하여 ESC/POS 명령어로 프린터를 제어합니다.</p>
+<h2>주요 기능</h2>
+<h3>1. 텍스트 처리 (Text Processing)</h3>
+<ul>
+<li><strong>get_text_width()</strong> (<code>printer.py:12</code>): 한글(2바이트)과 영문(1바이트) 문자의 실제 폭 계산</li>
+<li><strong>wrap_text()</strong> (<code>printer.py:43</code>): 40자 폭으로 텍스트 자동 줄바꿈</li>
+<li><strong>truncate_to_single_line()</strong> (<code>printer.py:25</code>): 텍스트를 한 줄로 제한하고 초과 시 자름</li>
+</ul>
+<h3>2. 출력 준비 (Print Preparation)</h3>
+<ul>
+<li><strong>prepare_print_content()</strong> (<code>printer.py:76</code>): 출력용 텍스트 포맷팅 (상하단 여백 추가)</li>
+<li><strong>create_esc_pos_content()</strong> (<code>printer.py:95</code>): ESC/POS 명령어가 포함된 바이너리 데이터 생성<ul>
+<li>프린터 초기화 (<code>\x1B\x40</code>)</li>
+<li>한글 지원 설정 (EUC-KR 코드페이지)</li>
+<li>가운데 정렬 설정</li>
+<li>용지 절단 명령어</li>
+</ul>
+</li>
+</ul>
+<h3>3. 프린터 관리 (Printer Management)</h3>
+<ul>
+<li><strong>printer_list()</strong> (<code>printer.py:131</code>): CUPS에 등록된 프린터 목록 조회</li>
+<li><strong>printer_status()</strong> (<code>printer.py:187</code>): 특정 프린터의 상태 확인</li>
+<li><strong>printer_print()</strong> (<code>printer.py:146</code>): 실제 프린터 출력 실행</li>
+</ul>
+<h3>4. 미리보기 기능</h3>
+<ul>
+<li><strong>printer_preview()</strong> (<code>printer.py:89</code>): 출력 내용을 콘솔에서 미리보기</li>
+</ul>
+<h2>기술적 특징</h2>
+<h3>ESC/POS 명령어 지원</h3>
+<pre><code class="language-python">content.append(b&#39;\x1B\x40&#39;)        # 프린터 초기화
+content.append(b&#39;\x1B\x74\x12&#39;)    # EUC-KR 코드페이지 설정
+content.append(b&#39;\x1B\x61\x01&#39;)    # 가운데 정렬
+content.append(b&#39;\x1D\x56\x00&#39;)    # 용지 절단
+</code></pre>
+<h3>한글 인코딩 처리</h3>
+<ul>
+<li>우선 EUC-KR 인코딩 시도</li>
+<li>실패 시 UTF-8 인코딩으로 폴백</li>
+<li>한글 문자 폭을 2로 계산하여 정확한 레이아웃 제공</li>
+</ul>
+<h3>안전한 임시 파일 처리</h3>
+<ul>
+<li><code>tempfile.NamedTemporaryFile</code>을 사용한 임시 파일 생성</li>
+<li>try-finally 블록으로 파일 삭제 보장 (<code>printer.py:164</code>)</li>
+</ul>
+<h2>명령줄 인터페이스</h2>
+<h3>기본 사용법</h3>
+<pre><code class="language-bash">python3 printer.py &quot;출력할 텍스트&quot;
+</code></pre>
+<h3>주요 옵션</h3>
+<ul>
+<li><code>-p, --printer</code>: 프린터 이름 지정 (기본값: BIXOLON_SRP_330II)</li>
+<li><code>--preview</code>: 출력 미리보기만 표시</li>
+<li><code>--list-printers</code>: 사용 가능한 프린터 목록 표시</li>
+<li><code>--status</code>: 프린터 상태 확인</li>
+</ul>
+<h2>에러 처리</h2>
+<ul>
+<li>subprocess 호출 시 예외 처리</li>
+<li>임시 파일 삭제 실패 시 무시 처리</li>
+<li>출력 실패 시 문제 해결 가이드 제공 (<code>printer.py:250</code>)</li>
+</ul>
+<h2>의존성</h2>
+<ul>
+<li><strong>subprocess</strong>: CUPS 명령어 실행 (lpstat, lp)</li>
+<li><strong>tempfile</strong>: 안전한 임시 파일 처리</li>
+<li><strong>argparse</strong>: 명령줄 인수 파싱</li>
+<li><strong>os</strong>: 파일 시스템 작업</li>
+</ul>
+<h2>설계 특징</h2>
+<ul>
+<li>한글과 영문이 혼재된 텍스트의 정확한 폭 계산</li>
+<li>ESC/POS 프린터 표준 준수</li>
+<li>CUPS 시스템과의 안정적인 연동</li>
+<li>MCP(Model Context Protocol) 호환성 (<code>isFromMCP</code> 매개변수)</li>
+</ul>
+<h2>제한사항</h2>
+<ul>
+<li>40자 폭 고정 (영수증 프린터 특성상)</li>
+<li>BIXOLON SRP-330II 프린터에 최적화</li>
+<li>macOS/Linux 환경 (CUPS 의존성)</li>
+</ul>
+
+                </div>
+              </div>
+            
+          </div>
+        </div>
+      
+        <div class="category">
+          <h2 class="category-title">Documentation</h2>
+          <div class="files">
+            
+              <div class="file-item">
+                <h3 class="file-title">CLAUDE</h3>
+                <div class="file-meta">
+                  <span class="file-date">7/16/2025</span>
+                  <span class="file-path">docs/CLAUDE.md</span>
+                </div>
+                <div class="file-content">
+                  <h1>CLAUDE.md - Documentation Directory</h1>
+<p>This file provides specific guidance for Claude Code when working with markdown files in the <code>/docs</code> directory.</p>
+<h2>Markdown Documentation Standards</h2>
+<p>When creating or editing markdown files in this directory, follow these standards:</p>
+<h3>Required Header Format</h3>
+<p>Every markdown file MUST start with the following header format:</p>
+<pre><code class="language-markdown">---
+title: Document Title
+category: [overview|technical|analysis|planning|misc]
+created: 22024-07-01T15:30:45Z
+---
+# Document Title
+
+[Document content follows...]
+</code></pre>
+<h3>Documentation Rules</h3>
+<ol>
+<li><p><strong>Date Format</strong>: Use RFC3339 format (YYYY-MM-DDTHH:MM:SSZ)</p>
+</li>
+<li><p><strong>Category Selection</strong>: Choose exactly one from:</p>
+<ul>
+<li><code>overview</code> - High-level project overviews and introductions</li>
+<li><code>technical</code> - Technical specifications, API docs, code analysis</li>
+<li><code>analysis</code> - Research findings, data analysis, performance studies</li>
+<li><code>planning</code> - Project plans, roadmaps, task breakdowns</li>
+<li><code>misc</code> - Everything else that doesn&#39;t fit other categories</li>
+</ul>
+</li>
+<li><p><strong>Header Placement</strong>: <code>title</code>, <code>category</code> and <code>created</code> info must appear immediately after the main title</p>
+</li>
+<li><p><strong>Formatting</strong>: Use bold text for labels, maintain consistent spacing</p>
+</li>
+</ol>
+<h3>Important Notes</h3>
+<ul>
+<li>ALWAYS apply these rules when creating new markdown files in <code>/docs</code></li>
+<li>When editing existing markdown files, add the header if missing</li>
+<li>Use current timestamp when creating the <code>created</code> field</li>
+</ul>
+<h3>Document Portal Integration</h3>
+<p>Files created with proper headers will be automatically categorized and displayed in the documentation portal (<code>index.html</code>). The categorization system helps organize documents into logical groups for better navigation.</p>
+<h3>Quality Standards</h3>
+<ul>
+<li>Use clear, descriptive titles</li>
+<li>Include comprehensive sections with proper heading hierarchy</li>
+<li>Add code examples where applicable</li>
+<li>Include diagrams (Mermaid) for complex relationships</li>
+<li>Maintain consistent formatting throughout</li>
+<li>Use Korean comments for Korean-language content</li>
+<li>Use English for technical terms and international standards</li>
+</ul>
+
+                </div>
+              </div>
+            
+          </div>
+        </div>
+      
+        
+        <div class="last-updated">
+            마지막 업데이트: 7/16/2025, 2:16:57 PM
+        </div>
+    </div>
+</body>
+</html>
+    
