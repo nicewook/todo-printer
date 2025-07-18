@@ -1,0 +1,28 @@
+{
+  "theme": "default",
+  "title": "프로젝트 문서",
+  "subtitle": "프로젝트 문서",
+  "outputFile": "index.html",
+  "docsDir": "docs",
+  "excludeFiles": ["temp.md", "draft.md", "*temp*", "*draft*", "*.bak"],
+  "themes": {
+    "default": {
+      "name": "기본 테마",
+      "description": "기본 밝은 테마"
+    },
+    "dark": {
+      "name": "다크 테마",
+      "description": "어두운 테마"
+    },
+    "github": {
+      "name": "GitHub 테마",
+      "description": "GitHub 스타일 테마"
+    }
+  },
+  "categoryOrder": ["overview", "technical", "analysis", "planning", "misc"],
+  "defaultCategory": "Documentation",
+  "watchFiles": [
+    "README.md",
+    "docs/**/*.md"
+  ]
+}

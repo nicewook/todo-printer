@@ -8,8 +8,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs": "node docs-generator.js",
-    "docs:watch": "node docs-generator.js --watch"
+    "docs": "cd docs/generator && node docs-generator.js",
+    "docs:watch": "cd docs/generator && node docs-generator.js --watch",
+    "docs:dark": "cd docs/generator && node docs-generator.js --theme dark",
+    "docs:github": "cd docs/generator && node docs-generator.js --theme github"
   },
   "repository": {
     "type": "git",

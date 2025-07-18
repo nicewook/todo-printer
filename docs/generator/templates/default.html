@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+{{css}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>📚 문서</h1>
+                <div class="subtitle">{{subtitle}}</div>
+            </div>
+            {{sidebar}}
+        </div>
+        
+        <div class="main-content">
+            {{content}}
+        </div>
+    </div>
+
+    <script>
+        // 카테고리 토글 기능
+        function toggleCategory(categoryId, titleElement) {
+            const categoryElement = document.getElementById('category-' + categoryId);
+            
+            if (categoryElement) {
+                categoryElement.classList.toggle('collapsed');
+            }
+            if (titleElement) {
+                titleElement.classList.toggle('collapsed');
+            }
+        }
+        
+        // 파일 표시 기능
+        function showFile(fileId, clickedElement) {
+            // 모든 파일 콘텐츠 숨기기
+            document.querySelectorAll('.file-content-wrapper').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // 모든 사이드바 파일에서 active 클래스 제거
+            document.querySelectorAll('.sidebar-file').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // 선택된 파일 표시
+            const contentElement = document.getElementById('content-' + fileId);
+            if (contentElement) {
+                contentElement.classList.add('active');
+            }
+            
+            // 선택된 사이드바 파일에 active 클래스 추가
+            if (clickedElement) {
+                clickedElement.classList.add('active');
+            }
+        }
+        
+        // 초기 설정: 첫 번째 카테고리 열기
+        document.addEventListener('DOMContentLoaded', function() {
+            // 첫 번째 카테고리 열기
+            const firstCategory = document.querySelector('.sidebar-category-title');
+            if (firstCategory) {
+                const categoryId = firstCategory.getAttribute('onclick').match(/'([^']+)'/)[1];
+                const categoryElement = document.getElementById('category-' + categoryId);
+                if (categoryElement) {
+                    // 첫 번째 카테고리는 기본으로 열려있도록 설정
+                    categoryElement.classList.remove('collapsed');
+                    firstCategory.classList.remove('collapsed');
+                }
+            }
+            
+            // 첫 번째 파일 자동 선택
+            const firstFile = document.querySelector('.sidebar-file');
+            if (firstFile) {
+                firstFile.classList.add('active');
+                // 첫 번째 파일 내용도 자동으로 표시
+                const onclick = firstFile.getAttribute('onclick');
+                if (onclick) {
+                    const fileId = onclick.match(/'([^']+)'/)[1];
+                    const contentElement = document.getElementById('content-' + fileId);
+                    if (contentElement) {
+                        contentElement.classList.add('active');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
