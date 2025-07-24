@@ -8,18 +8,18 @@ created: 2025-01-16T09:30:00Z
 
 ## 개요
 
-`mcp_server.py`는 FastMCP 프레임워크를 사용하여 구현된 MCP(Model Context Protocol) 서버입니다. Claude Desktop과 같은 AI 어시스턴트가 프린터 기능에 접근할 수 있도록 하는 브리지 역할을 합니다.
+`mcp_server.py`는 jlowin/fastmcp 프레임워크를 사용하여 구현된 MCP(Model Context Protocol) 서버입니다. Claude Desktop과 같은 AI 어시스턴트가 프린터 기능에 접근할 수 있도록 하는 브리지 역할을 합니다.
 
 ## 주요 구성 요소
 
 ### 1. 서버 설정 (Server Configuration)
 
 ```python
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 mcp = FastMCP("todo-printer")
 ```
 
-- **프레임워크**: FastMCP 사용 (동기적 구현)
+- **프레임워크**: jlowin/fastmcp 사용 (동기적 구현)
 - **서버 이름**: "todo-printer"
 - **단순한 구조**: 복잡한 비동기 처리 없이 직접적인 함수 호출
 
@@ -115,7 +115,7 @@ text_width = get_text_width(text)
 ### 1. FastMCP 데코레이터 활용
 
 ```python
-@mcp.tool()
+@mcp.tool
 def print_memo(todo_memo: str, printer_name: str = "BIXOLON_SRP_330II") -> str:
 ```
 
@@ -173,7 +173,7 @@ python3 mcp_server.py
 ### 1. 단순성 (Simplicity)
 
 - **동기 처리**: 복잡한 비동기 구조 없이 직접적인 함수 호출
-- **최소 의존성**: FastMCP와 자체 printer 모듈만 사용
+- **최소 의존성**: jlowin/fastmcp와 자체 printer 모듈만 사용
 - **명확한 인터페이스**: 2개의 핵심 도구 함수만 제공
 
 ### 2. 안정성 (Reliability)
@@ -231,4 +231,4 @@ AI: print_memo("이것은 매우 긴 텍스트입니다만 자동으로 잘립�
 
 ## 결론
 
-`mcp_server.py`는 FastMCP를 활용한 효율적이고 직관적인 프린터 인터페이스를 제공합니다. 단순함과 안정성을 중시한 설계로, AI 어시스턴트와 프린터 간의 안정적인 브리지 역할을 수행합니다.
+`mcp_server.py`는 jlowin/fastmcp 프레임워크를 활용한 효율적이고 직관적인 프린터 인터페이스를 제공합니다. 단순함과 안정성을 중시한 설계로, AI 어시스턴트와 프린터 간의 안정적인 브리지 역할을 수행합니다.

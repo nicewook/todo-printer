@@ -4,14 +4,14 @@ MCP Server for Todo Printer
 FastMCP를 사용한 단순한 동기 구현
 """
 
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 import printer
 from printer import get_text_width, truncate_to_single_line
 
 # FastMCP 서버 설정
 mcp = FastMCP("todo-printer")
 
-@mcp.tool()
+@mcp.tool
 def print_memo(
     todo_memo: str,
     printer_name: str = "BIXOLON_SRP_330II"
@@ -57,7 +57,7 @@ def print_memo(
     except (ImportError, AttributeError, RuntimeError) as e:
         return f"❌ 출력 오류: {str(e)}"
 
-@mcp.tool()
+@mcp.tool
 def list_printers() -> str:
     """
     사용 가능한 프린터 목록을 조회합니다.
