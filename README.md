@@ -113,9 +113,11 @@ Claude Desktop 설정 파일에 다음과 같이 추가한다:
       "command": "/path/to/uv",
       "args": [
         "run",
-        "python",
-        "/path/to/project/todo-printer/mcp_server.py"
-      ]
+        "--directory",
+        "/Users/hyunseokjeong/VibeCodingProject/todo-printer",
+        "mcp_server.py"
+      ],
+      "transport": "stdio"
     }
   }
 }
